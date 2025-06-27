@@ -1,8 +1,9 @@
 /* src/components/Footer.css */
 .footer {
+  width: 100%;
+  max-height: 100px;
   text-align: center;
   padding: 1rem;
-  background-color: #f0f0f0;
-  color: #555;
-  margin-top: 2rem;
+  background-color: #ae4fcb;
+  color: #000000;
 }

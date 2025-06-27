@@ -26,10 +26,11 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className="home-wrapper">
       <Navbar />
+
       <main className="home-container">
-        <h2 className="home-title">Explore Our Dishes 🍽️</h2>
+        <h2 className="home-title">Explore The Classical Taste 🍽️</h2>
         {loading ? (
           <p className="loading-text">Loading...</p>
         ) : (
@@ -42,6 +43,7 @@ const Home = () => {
           </div>
         )}
       </main>
+      
       <Footer />
     </div>
   );
