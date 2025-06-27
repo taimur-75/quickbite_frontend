@@ -10,6 +10,8 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import React from 'react'; // Import React
 import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
+import Profile from './pages/Profile'; // Import the new Profile component
+import ProtectedRoute from './components/ProtectedRoute'; // Import ProtectedRoute
 
 function App() {
   return (
@@ -20,9 +22,14 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          {/* Add other routes like /profile, /settings, etc. later */}
-          {/* Example of a protected route (you'd create a wrapper component for this) */}
-          {/* <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} /> */}
+          <Route 
+            path="/profile" 
+            element={
+              <ProtectedRoute>
+                <Profile /> {/* The Profile component is now protected */}
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
       </AuthProvider>
     </Router>
