@@ -1,16 +1,20 @@
 // src/pages/Login.jsx
-import React, { useState } from 'react'; // Import React
-import { useNavigate, Link } from 'react-router-dom'; // Make sure Link is imported
-import './Login.css'; // Link to the new Login.css
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Import useAuth hook
+import './Login.css'; // Link to the Login.css
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
-  const [loading, setLoading] = useState(false); // To show loading state
-  const [error, setError] = useState(null);     // To display error messages
-  const [successMessage, setSuccessMessage] = useState(null); // To display success messages
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const navigate = useNavigate();
+  const { login } = useAuth(); // Get the login function from context
 
+  // Using Vite's environment variables for backend URL
+  // Ensure you have VITE_APP_BACKEND_BASE_URL defined in your .env file (e.g., VITE_APP_BACKEND_BASE_URL=http://localhost:5000)
   const BACKEND_BASE_URL = import.meta.env.VITE_APP_BACKEND_BASE_URL;
 
   const handleChange = e => {
@@ -54,10 +58,10 @@ const Login = () => {
       if (res.ok) { // Check if the response status is 2xx
         setSuccessMessage('Login successful! Redirecting...');
         
-        // --- Store JWT Token and User Data in localStorage ---
-        localStorage.setItem('token', data.token);
-        // Your backend returns user object on login, store it too
-        localStorage.setItem('user', JSON.stringify(data.user)); 
+        // --- Use AuthContext's login function ---
+        // This single call handles both setting state AND storing in localStorage.
+        // No need for separate localStorage.setItem calls here.
+        login(data.token, data.user); 
 
         // Redirect to homepage or dashboard after a short delay
         setTimeout(() => {
