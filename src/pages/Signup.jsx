@@ -16,6 +16,8 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
+  const BACKEND_BASE_URL = import.meta.env.VITE_APP_BACKEND_BASE_URL;
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     // Clear any previous error/success messages when user starts typing again
@@ -60,7 +62,7 @@ const Signup = () => {
 
     try {
       // Backend endpoint is /api/auth/signup
-      const res = await fetch('http://localhost:5000/api/auth/signup', {
+      const res = await fetch(`${BACKEND_BASE_URL}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

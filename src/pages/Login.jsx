@@ -11,6 +11,8 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const BACKEND_BASE_URL = import.meta.env.VITE_APP_BACKEND_BASE_URL;
+
   const handleChange = e => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
     // Clear previous error/success messages on input change
@@ -41,7 +43,7 @@ const Login = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch(`${BACKEND_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials)

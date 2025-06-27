@@ -9,10 +9,12 @@ const Home = () => {
   const [dishes, setDishes] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const BACKEND_BASE_URL = import.meta.env.VITE_APP_BACKEND_BASE_URL;
+
   useEffect(() => {
     const fetchDishes = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/dishes');
+        const res = await fetch(`${BACKEND_BASE_URL}/api/dishes`);
         const result = await res.json();
         setDishes(result.data);
         setLoading(false);
