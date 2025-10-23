@@ -1,0 +1,7 @@
+{
+  "//comment": "If someone visits any route (like /payment-success, /profile, etc.), always show index.html — React will handle the rest. Note: JSON doesn’t officially support comments, but Vercel actually ignores unknown keys.",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
+
