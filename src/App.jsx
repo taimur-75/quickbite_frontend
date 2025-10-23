@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+//import { useState } from 'react'
+//import reactLogo from './assets/react.svg'
+//import viteLogo from '/vite.svg'
 import './App.css'
 
 // src/App.jsx
@@ -13,15 +13,22 @@ import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
 import Profile from './pages/Profile'; // Import the new Profile component
 import ProtectedRoute from './components/ProtectedRoute'; // Import ProtectedRoute
 
+import Checkout from './pages/Checkout'; // <-- NEW IMPORT
+import PaymentSuccess from './pages/PaymentSuccess'; // <-- NEW IMPORT
+import PaymentCancel from './pages/PaymentCancel'; // <-- NEW IMPORT
+import Cart from './pages/Cart';
+
+
 function App() {
   return (
-    <Router>
-      {/* Wrap your entire application with AuthProvider */}
-      <AuthProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} /> 
+          <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/payment-cancel" element={<PaymentCancel />} />
+          <Route path="/cart" element={<Cart />} />
           <Route 
             path="/profile" 
             element={
@@ -31,8 +38,6 @@ function App() {
             } 
           />
         </Routes>
-      </AuthProvider>
-    </Router>
   );
 }
 

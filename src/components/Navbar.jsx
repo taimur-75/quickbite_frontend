@@ -2,11 +2,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
+import { useCart } from '../context/CartContext';
 import './Navbar.css';
 
 const Navbar = () => {
   // Destructure isAuthenticated, logout, and user from the AuthContext
   const { isAuthenticated, logout, user } = useAuth();
+  const { totalItems } = useCart();
   const navigate = useNavigate(); // Hook for programmatic navigation
 
   // Function to handle logout button click
@@ -35,6 +37,20 @@ const Navbar = () => {
             {user && user.name && <li>Hello, {user.name}!</li>}
             <li><Link to="/profile">Profile</Link></li>
             <li><Link to="/settings">Settings</Link></li>
+
+            {/* Cart Link with Badge */}
+            <li>
+                <Link to="/cart" className="relative nav-cart-link">
+                    {/* Placeholder Cart Icon - Replace 🛒 with a proper SVG/Font icon */}
+                    <span className="cart-icon">🛒 Cart </span> 
+                    {totalItems > 0 && (
+                        <span className="cart-badge">
+                            {totalItems}
+                        </span>
+                    )}
+                </Link>
+            </li>
+
             <li>
               <button className="logout-btn" onClick={handleLogout}>
                 Logout
@@ -48,3 +64,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+
