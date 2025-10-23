@@ -67,8 +67,8 @@ const Checkout = () => {
         }));
 
         // 🧾 Place order
-        const orderResponse = await fetch(`${API_BASE_URL}/orders`, {
-            method: 'POST',
+        const orderResponse = await fetch(`${API_BASE_URL}/api/orders`, {
+            method: 'POST',                             //...--------
             headers: { 
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
@@ -92,8 +92,8 @@ if (orderResult._id) {
 
 
         // 💳 Create Stripe session
-        const sessionResponse = await fetch(`${API_BASE_URL}/payments/create-checkout-session`, {
-            method: 'POST',
+        const sessionResponse = await fetch(`${API_BASE_URL}/api/payments/create-checkout-session`, {
+            method: 'POST',                                //...--------
             headers: { 
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
