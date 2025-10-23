@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { loadStripe } from '@stripe/stripe-js';
 import './Checkout.css';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = import.meta.env.VITE_APP_BACKEND_BASE_URL;
 
 const Checkout = () => {
     const { cart, totalAmount, updateQuantity, clearCart } = useCart();

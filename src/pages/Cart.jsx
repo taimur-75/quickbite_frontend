@@ -109,8 +109,10 @@ const Cart = () => {
                 dish: item.dish._id,
                 quantity: item.quantity,
             }));
+            
+            const API_BASE_URL = import.meta.env.VITE_APP_BACKEND_BASE_URL;
 
-            const response = await fetch('http://localhost:5000/api/cart', {
+            const response = await fetch(`${API_BASE_URL}/cart`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

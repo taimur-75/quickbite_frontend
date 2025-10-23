@@ -18,8 +18,10 @@ export const CartProvider = ({ children }) => {
                 return;
             }
 
+            const API_BASE_URL = import.meta.env.VITE_APP_BACKEND_BASE_URL;
+
             try {
-                const res = await fetch('http://localhost:5000/api/cart', {
+                const res = await fetch(`${API_BASE_URL}/cart`, {
                     headers: { 
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`
@@ -61,8 +63,10 @@ export const CartProvider = ({ children }) => {
                 quantity: item.quantity
             }));
 
+            const API_BASE_URL = import.meta.env.VITE_APP_BACKEND_BASE_URL;
+
             try {
-                await fetch('http://localhost:5000/api/cart', {
+                await fetch(`${API_BASE_URL}/cart`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
