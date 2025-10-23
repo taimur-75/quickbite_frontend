@@ -66,7 +66,7 @@ export const CartProvider = ({ children }) => {
             const API_BASE_URL = import.meta.env.VITE_APP_BACKEND_BASE_URL;
 
             try {
-                await fetch(`${API_BASE_URL}/cart`, {
+                await fetch(`${API_BASE_URL}/api/cart`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
